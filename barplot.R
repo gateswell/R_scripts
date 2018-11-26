@@ -1,0 +1,8 @@
+library(ggplot2)
+argv <- commandArgs(TRUE)
+dat <- read.table(argv[1],head=T)
+pdf(argv[2],height=10,width=8)
+#pdf(argv[2])
+#barplot(dat$number~dat$platform,data=dat,xlab='Platform',ylab='Mutation number')
+ggplot(dat,aes(y=number,x=platform,fill = variant))+geom_boxplot()+theme(axis.title.x = element_text(size = 20),axis.title.y = element_text(size = 20),axis.text.x = element_text(size = 15),axis.text.y = element_text(size = 15),legend.title = element_text(size=15),legend.text = element_text(size=15),plot.title = element_text(hjust = 0.5,size = 25))+ labs(title='Mutation')
+dev.off()
